@@ -1,0 +1,10 @@
+#mainBox {margin:0 auto; width:640px}
+#mainBox .h2, #mainBox .h3 {margin-bottom:1em; padding:.2em .4em; border-bottom:3px solid #CCF; background:#000; color:#fff}
+#mainBox .h2 {display:inline-block}
+#mainBox blockquote {margin-bottom:1em}
+#mainBox .section, #mainBox .sub-section, .groups {clear:both}
+#mainBox .section {overflow:hidden; margin:5em 0}
+#mainBox .sub-section {overflow:hidden; margin-bottom:3em}
+#mainBox .group {float:left; margin:0 15px 15px 0; width:198px; height:85px; _display:inline}
+#mainBox .group span {float:left; margin:3px; width:60px; height:60px; text-align:center}
+#mainBox .group input {display:block; margin-top:64px; background:#fff; font-family:"Lucida Console","Lucida Sans Typewriter",Monaco,"Bitstream Vera Sans Mono",monospace; border: none 0; font-size:14px; width:100%; text-align:center;height:22px;line-height:22px;padding:0;}
