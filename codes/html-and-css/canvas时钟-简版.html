@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas时钟</title>
+</head>
+
+<body>
+    <canvas id="clock" width="500" height="500" style="border: 1px solid #ccc">
+        该浏览器不支持canvas
+    </canvas>
+
+    <script>
+        // 获取节点
+        var clock = document.getElementById("clock");
+        // 获取上下文
+        var ctx = clock.getContext("2d");
+        (function start() {
+            ctx.clearRect(0, 0, clock.width, clock.height);
+            ctx.save();
+            // 设置中心点
+            ctx.translate(clock.width / 2, clock.height / 2);
+            
+            run();
+            drawing();
+            ctx.restore();
+
+            // 定时开始
+            requestAnimationFrame(start);
+        })();
+
+        function drawing() {
+            /* 
+            *   画圆盘
+            */
+            ctx.beginPath();
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = "#333";
+            ctx.arc(0, 0, 200, 0, 2 * Math.PI);
+            ctx.stroke();
+
+            /* 
+            *  分针刻度
+            */
+            ctx.beginPath();
+            ctx.strokeStyle = "#003399";
+            ctx.lineWidth = 2;
+            for (let i = 1; i < 61; i++) {
+                ctx.moveTo(0, -190);
+                ctx.lineTo(0, -198);
+                ctx.stroke();
+                ctx.rotate(2 * Math.PI / 60);
+            }
+
+            /* 
+            *  时针刻度
+            */
+            ctx.beginPath();
+            ctx.strokeStyle = "#CC0033";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.font = "oblique 20px 微软雅黑";
+            ctx.lineWidth = 5;
+            for (let i = 1; i < 13; i++) {
+                ctx.moveTo(0, -178);
+                ctx.lineTo(0, -198);
+                ctx.stroke();
+                ctx.rotate(2 * Math.PI / 12);
+            }
+
+            /* 
+            *  文字
+            */
+            ctx.beginPath();
+            ctx.strokeStyle = "#CC0033";
+            ctx.lineWidth = 5;
+            for (let i = 1; i < 13; i++) {
+                ctx.fillText(i, Math.sin(2 * Math.PI/12*i)*160, Math.cos(2 * Math.PI/12*i)*(-160));
+                // ctx.rotate(2 * Math.PI / 12);
+            }
+
+
+            /* 
+            *   圆心
+            */
+            ctx.beginPath();
+            ctx.lineWidth = 1;
+            ctx.arc(0, 0, 6, 0, 2 * Math.PI);
+            ctx.fillStyle = "#FFFF00";
+            ctx.strokeStyle = "#F00000";
+            ctx.fill();
+            ctx.stroke();
+        }
+
+
+
+        function run() {
+            var timer = new Date();
+            var hour = timer.getHours();
+            var min = timer.getMinutes();
+            var sec = timer.getSeconds();
+            /* 
+            *   分针
+            */
+            ctx.save();
+            ctx.beginPath();
+            // 秒针走60格，分针走1格。 sec:min = 60:1
+            ctx.rotate(2 * Math.PI / 60 * min + (2 * Math.PI / 60 * sec )/ 60);
+            ctx.strokeStyle = "#003399";
+            ctx.lineWidth = 4;
+            ctx.moveTo(0, 10);
+            ctx.lineTo(0, -110);
+            ctx.stroke();
+            ctx.restore();
+
+            /*
+            *   秒针
+            */
+            ctx.save();
+            ctx.beginPath();
+            ctx.rotate(2 * Math.PI / 60 * sec);
+            ctx.strokeStyle = "#333";
+            ctx.lineWidth = 2;
+            ctx.moveTo(0, 20);
+            ctx.lineTo(0, -150);
+            ctx.stroke();
+            ctx.restore();
+
+            /*
+            *   时针
+            */
+            ctx.save();
+            ctx.beginPath();
+            // 分针走了60格， 时针走了5格。 min:hour = 12:1
+            ctx.rotate(2 * Math.PI / 12 * hour + (2 * Math.PI / 60 * min + (2 * Math.PI / 60 * sec )/ 60)/12);
+            ctx.strokeStyle = "#CC0033";
+            ctx.lineWidth = 5;
+            ctx.moveTo(0, 10);
+            ctx.lineTo(0, -80);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+
+    </script>
+</body>
+
+</html>

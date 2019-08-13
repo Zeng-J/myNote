@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas画布</title>
+</head>
+
+<body>
+    <!-- 画布的宽高直接用标签内属性来设置， 不要用css来控制，否则导致图像拉伸 -->
+    <canvas id="myCanvas" width="400" height="400" style="border: 1px solid #ddd;">该浏览器不支持canvas</canvas>
+
+    <canvas id="myCanvas2" width="400" height="400" style="border: 1px solid #ddd; ">该浏览器不支持canvas</canvas>
+
+    <canvas id="myCanvas3" width="400" height="400" style="border: 1px solid #ddd; ">该浏览器不支持canvas</canvas>
+
+    <canvas id="myCanvas4" width="400" height="400" style="border: 1px solid #ddd; ">该浏览器不支持canvas</canvas>
+
+
+    <script>
+        // 获取节点
+        var myCanvas = document.getElementById("myCanvas");
+
+        // 获取上下文
+        var ctx = myCanvas.getContext("2d");
+
+        /* 1. 矩形 fillRect(x,y,width,height) 
+         */
+        ctx.fillStyle = "#FFCCCC";
+        ctx.fillRect(50, 50, 150, 150);
+
+        /* 2.  路径、填充、描边
+         */
+
+        //  路径
+        ctx.rect(300, 300, 50, 50);
+        // 填充
+        ctx.fillStyle = "#FF6666";
+        ctx.fill();
+        // 描边
+        ctx.strokeStyle = "#0099CC";
+        ctx.lineWidth = 5;
+        ctx.stroke();
+
+        /* 
+        * -----------------------------------
+        */
+
+        // 获取节点
+        var myCanvas2 = document.getElementById("myCanvas2");
+
+        // 获取上下文
+        var ctx2 = myCanvas2.getContext("2d");
+
+        ctx2.strokeStyle = "red";
+        ctx2.moveTo(5, 5);
+        ctx2.lineTo(50, 50);
+        ctx2.lineWidth = 10;
+        ctx2.stroke();
+
+        // 初始化路径，避免第二次路径与第一次的样式重叠
+        // ctx2.beginPath();
+        ctx2.rect(80, 10, 50, 50);
+        ctx2.strokeStyle = "green";
+        ctx2.stroke();
+
+        // 三角形(空)
+        ctx2.beginPath();
+        ctx2.strokeStyle = "blue";
+        ctx2.moveTo(200, 150);
+        ctx2.lineTo(300, 150);
+        ctx2.lineTo(250, 100);
+        // ctx2.lineTo(200, 150); // 不要重新画回原点，用下面的闭合方法
+        ctx2.closePath();
+        ctx2.lineWidth = 10;
+        ctx2.stroke();
+
+        // 三角形（实）
+        ctx2.beginPath();
+        ctx2.fillStyle = "blue";
+        ctx2.moveTo(200, 250);
+        ctx2.lineTo(300, 250);
+        ctx2.lineTo(250, 200);
+        // ctx2.lineTo(200, 150); // 不要重新画回原点，用下面的闭合方法
+        ctx2.closePath();
+        ctx2.fill();
+
+        // 圆形 arc(x, y, r, start, stop)
+        ctx2.beginPath();
+        ctx2.strokeStyle = "green";
+        ctx2.lineWidth = 2;
+        ctx2.arc(60, 250, 50, 0, 2 * Math.PI);
+        ctx2.stroke();
+
+        // 文本
+        ctx2.font = "20px 微软雅黑";
+        ctx2.fillStyle = "#CCCCFF";
+        ctx2.fillText("hello world", 10, 350);
+
+        ctx2.font = "25px 微软雅黑";
+        ctx2.lineWidth = 1;
+        ctx2.strokeStyle = "blue";
+        ctx2.strokeText("你好", 130, 350);
+
+        // 渐变 createLinearGradient(x, y, x1, y1) createRadialGradient(x, y, x1, y1)
+        var grd = ctx2.createLinearGradient(300, 300, 400, 400);
+        grd.addColorStop(0, "red");
+        grd.addColorStop(1, "yellow");
+
+        ctx2.beginPath();
+        ctx2.fillStyle = grd;
+        ctx2.rect(300, 300, 100, 100);
+        ctx2.fill();
+
+    </script>
+
+    <!-- 多边形 -->
+    <script>
+        var myCanvas3 = document.getElementById("myCanvas3");
+        var ctx3 = myCanvas3.getContext('2d');
+
+        /* 
+        *  正三角形
+        */
+        // 设置画布中心点
+        ctx3.translate(myCanvas3.width / 2, myCanvas3.height / 2);
+
+        // ctx3.strokeStyle = "red";
+        // ctx3.moveTo(0, -100);
+
+        // // 旋转画布(注意：以设置的中心点旋转)
+        // ctx3.rotate(Math.PI * 2 / 3);
+        // // 旋转的是坐标
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 3);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 3);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.stroke();
+
+        /* 
+        *  正五边形
+        */
+        // ctx3.beginPath();
+        // ctx3.strokeStyle = "blue";
+        // ctx3.moveTo(0, -100);
+
+        // // 旋转画布(注意：以设置的中心点旋转)
+        // ctx3.rotate(2 * Math.PI / 5);
+        // // 旋转的是坐标
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 5);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 5);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 5);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.rotate(2 * Math.PI / 5);
+        // ctx3.lineTo(0, -100);
+
+        // ctx3.stroke();
+
+
+        // 封装函数
+        function drawShape(n, radius) {
+            // 半径
+            var r = radius || 100;
+
+            // 保存绘画环境
+            ctx3.save();
+
+            ctx3.beginPath();
+            ctx3.moveTo(0, -r);
+            for (let i = 1; i <n; i++) {
+                ctx3.rotate(2 * Math.PI /n);
+                ctx3.lineTo(0, -r);
+            }
+            ctx3.closePath();
+            ctx3.stroke();
+
+            // 还原绘画环境
+            ctx3.restore();
+        }
+        drawShape(10);
+        drawShape(4, 150);
+
+    </script>
+
+    <script>
+        var myCanvas4 = document.getElementById("myCanvas4");
+
+        var ctx4 = myCanvas4.getContext("2d");
+
+        ctx4.lineWidth = 8;
+        ctx4.moveTo(5, 150);
+        var x = 5;
+
+        var timer = setInterval(function fun() {
+            if (x <= 350) {
+                x += 5;
+                ctx4.lineTo(x, 150)
+                ctx4.stroke();
+            } else {
+                clearInterval(timer);
+            }
+        }, 1000/50)
+
+        // var timer = setTimeout(function fun() {
+        //     if (x <= 350) {
+        //         x += 5;
+        //         ctx4.lineTo(x, 150);
+        //         ctx4.stroke();
+        //         timer = setTimeout(fun, 1000/50);
+        //     } else {
+        //         clearTimeout(timer);
+        //     }
+        // }, 1000/50)
+
+        // var timer = requestAnimationFrame(function fun() {
+        //     if (x <= 350) {
+        //         x += 3;
+        //         ctx4.lineTo(x, 150)
+        //         ctx4.stroke();
+        //         timer = requestAnimationFrame(fun);
+        //     } else {
+        //         cancelAnimationFrame(timer);
+        //     }
+        // })
+    </script>
+</body>
+
+</html>
