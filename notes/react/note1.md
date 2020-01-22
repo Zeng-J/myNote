@@ -4,7 +4,7 @@
 
 tree diff新旧两颗DOM树，逐层对比的过程，就是Tree Diff
 
-<br /><br />
+
 
 ## 2. JSX简介
 
@@ -69,11 +69,11 @@ tree diff新旧两颗DOM树，逐层对比的过程，就是Tree Diff
 
 - 在JSX中，如果要为元素添加`class`属性，那么必须写成`className`，因为`class`在ES6中是一个关键字。
 
-<br /><br />
+
 
 ## 3. 元素渲染
 
-<br /><br />
+
 
 ## 4. 组件&Props
 
@@ -115,7 +115,9 @@ tree diff新旧两颗DOM树，逐层对比的过程，就是Tree Diff
 
 ```
 
-<br /><br /><br />
+
+
+
 
 ## 5. State&生命周期
 
