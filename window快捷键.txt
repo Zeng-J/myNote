@@ -28,3 +28,7 @@ ctrl + alt + x （画图工具）
 快速创建html基础代码 ! + tab
 多个光标： Alt+Shift+Ctrl+方向键
 折叠代码：Ctrl+K、Ctrl+0
+全局查找文件: Ctrl+P
+文件内查找关键字：Ctrl+F
+全局查找关键字：Ctrl+Shift+F
+开启禅模式(纯代码视图)：Ctrl+k、Z  退出禅模式：双击Esc
