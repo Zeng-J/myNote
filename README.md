@@ -7,3 +7,10 @@
 
 ## 环形布局 + 拖拽排序
 https://zeng-j.github.io/circular-layout-drag-sort/build/index.html
+
+
+
+## 书籍目录
+
+- JavaScript设计模式-张容铭
+- 图解http
