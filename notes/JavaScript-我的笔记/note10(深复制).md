@@ -5,15 +5,19 @@
 ### 1. 浅拷贝
 
 - `Object.assgin`
+- 扩展运算符
+- `for in`循环复制
 - `Array.prototype.concat`
 - `Array.prototype.slice`
+
+缺点：只能实现第一层的”深拷贝“
 
 ### 2. 深拷贝
 
 - `JSON.parse(JSON.stringify())`
 	- 只能是对象/数组，不能有函数
 
-#### 定义深度克隆函数
+### 3. 定义深度克隆函数
 
 ```
 	
@@ -25,14 +29,14 @@
 
 ```
 
-```
+```javascript
 	
 	function checkedType(target) {
 		return Object.prototype.toString.call(target).slice(8, -1);
 	}
 
 	function clone(target) {
-		if (checkedType(target) === "Obejct" || checkedType(target) === "Array") {
+		if (checkedType(target) === "Object" || checkedType(target) === "Array") {
 			let result = {};
 			checkedType(target) === "Array" ? result = [] : "";
 			for (let i in target) {
