@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proxy</title>
+</head>
+<body>
+    <script>
+        window.onload = function() {
+            // 如果此页面，没有在被代理页面中打开，则不处理
+            if (top == self) return;
+
+            var arr = location.search.substr(1).split('&'),
+                fn, args;
+
+            for (var i = 0, len = arr.length, item; i < len; i++) {
+                item = arr[i].split('=');
+                if (item[0] == 'callback') {
+                    fn = item[1];
+                } else if (item[0] == 'arg') {
+                    args = decodeURIComponent(item[1]);
+                }
+            }
+
+            try {
+                top[fn](args);
+            } catch(e) {}
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 20px;
+        }
+        .ui-progressbar {
+            height: 20px;
+            background: #f5f5f5;
+            border-radius: 100px;
+            margin: 10px;
+        }
+        .ui-progressbar>div {
+            height: 100%;
+            border-radius: 100px;
+            background: #108ee9;
+        }
+
+        .ui-slider {
+            position: relative;
+            height: 20px;
+            background: #f5f5f5;
+            border-radius: 100px;
+            margin: 10px;
+        }
+        .ui-slider>div {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #91d5ff;
+            height: 100%;
+            border-radius: 100px;
+        }
+        .ui-slider>span {
+            position: absolute;
+            width: 1rem;
+            top: -4%;
+            height: 108%;
+            transform: translateX(-50%);
+            background: #1890ff;
+        }
+        .ui-slider>b, .ui-slider>em {
+            position: absolute;
+            z-index: 1;
+        }
+        .ui-slider>b {
+            left: 50%;
+            pointer-events: none;
+        }
+        .ui-slider>em {
+            top: -100%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div data-bind="type: 'slider', data: demo1"></div>
+    <div data-bind="type: 'slider', data: demo2">test</div>
+    <div data-bind="type: 'progressbar', data: demo3"></div>
+</body>
+<script src="./index.js"></script>
+</html>

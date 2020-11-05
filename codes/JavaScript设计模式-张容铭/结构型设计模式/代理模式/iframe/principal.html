@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>被代理页面</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function callback(data) {
+            console.log(data); // {"success":true,"data":[{"name":"zj","age":18}]}
+            let dom = document.getElementById('show');
+            dom.innerHTML = data;
+        }
+    </script>
+    <iframe style="display: none;" name="proxyIframe" id="proxyIframe"></iframe>
+
+    <!-- target指向proxyIframe，后台返回数据在proxyIframe获取 -->
+    <form action="http://127.0.0.1:8886" method="POST" target="proxyIframe">
+        <input type="text" name="callback" value="callback" >
+        <input type="text" name="proxy" value="http://127.0.0.1:5500/proxy.html" >
+        <input type="submit" value="提交" >
+    </form>
+    
+    <div id="show"></div>
+</body>
+</html>
